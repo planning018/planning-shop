@@ -1,2 +1,2 @@
-# simple-shop
+# planning-shop
 online shop - just for fun
