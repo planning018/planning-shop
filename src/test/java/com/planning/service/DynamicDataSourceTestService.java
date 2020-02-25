@@ -50,8 +50,5 @@ public class DynamicDataSourceTestService {
         user.setUserId(id);
         user.setMobile("13500000002");
         sysUserDao.updateById(user);
-
-        //测试事物
-        int i = 1/0;
     }
 }
