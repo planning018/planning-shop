@@ -13,14 +13,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * 小代码块 测试
  * @author planning
  * @since 2020-02-25 11:05
  **/
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class TinyDemoTest {
 
     @Autowired
@@ -41,6 +43,13 @@ public class TinyDemoTest {
         entity.setCreateTime(new Date());
         int resultId = userDao.insertUser(entity);
         System.out.println("TinyDemoTest testUser insert resultId is " + entity.getUserId());
+    }
+
+    @Test
+    public void testFunc(){
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Math.abs(new Random().nextLong()));
+        }
     }
 
 }
