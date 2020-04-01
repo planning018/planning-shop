@@ -2,6 +2,7 @@ package com.planning;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.planning.config.EsConfig;
 import com.planning.modules.app.entity.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
@@ -26,39 +27,9 @@ import java.util.UUID;
  * elastic search tutorial
  */
 @Slf4j
-public class ElasticSearchDemoTest {
+public class ElasticSearchDemoTest extends EsConfig {
 
-    /**
-     * the config parameters for the connection
-     */
-    private static final String HOST = "localhost";
-    private static final int PORT_ONE = 9200;
-    private static final String SCHEME = "http";
-
-    private static RestHighLevelClient restHighLevelClient;
     private static ObjectMapper objectMapper = new ObjectMapper();
-
-    private static final String INDEX = "persondata";
-    private static final String TYPE = "person";
-
-    /**
-     * Implements Singleton pattern here,
-     * so that there is just one connection at a time.
-     * @return RestHighLevelClient
-     */
-    private static synchronized RestHighLevelClient makeConnection(){
-        if(restHighLevelClient == null){
-            restHighLevelClient = new RestHighLevelClient(
-                    RestClient.builder(new HttpHost(HOST,PORT_ONE,SCHEME))
-            );
-        }
-        return restHighLevelClient;
-    }
-
-    private static synchronized void closeConnection() throws IOException {
-        restHighLevelClient.close();
-        restHighLevelClient = null;
-    }
 
     private static Person insertPerson(Person person){
         person.setPersonId(UUID.randomUUID().toString());
@@ -123,7 +94,7 @@ public class ElasticSearchDemoTest {
         person = insertPerson(person);
         log.info("Person inserted ---> " + person);
 
-/*        log.info("Changing name to `Jack Ma`...");
+        log.info("Changing name to `Jack Ma`...");
         person.setName("Jack Ma");
         person = updatePersonById(person.getPersonId(), person);
         log.info("Person updated ---> " + person);
@@ -132,8 +103,8 @@ public class ElasticSearchDemoTest {
         Person personFromDB = getPersonById(person.getPersonId());
         log.info("Person from DB ---> " + personFromDB);
 
-        log.info("Deleting JackMa");
-        deletePersonById(personFromDB.getPersonId());
+/*        log.info("Deleting JackMa");
+        deletePersonById("6910d596-142d-4205-90c2-08f72752fc34");
         log.info("Person Deleted");*/
 
         closeConnection();
