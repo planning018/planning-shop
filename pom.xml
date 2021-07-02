@@ -42,7 +42,7 @@
 		<hutool.version>4.1.12</hutool.version>
 		<lombok.version>1.18.4</lombok.version>
 		<rocketmq.version>4.2.0</rocketmq.version>
-		<elasticsearch.version>6.2.2</elasticsearch.version>
+		<elasticsearch.version>6.8.15</elasticsearch.version>
 
 
 		<!--wagon plugin 配置-->
